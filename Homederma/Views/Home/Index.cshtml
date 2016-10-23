@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+@model List<MapApp.Models.Sehir>
+
+<title>MapApp</title>
+
+
+<body onload="initialize()">
+
+    <div id="container">
+
+        <div class="row" style="background-color: #009688;">
+            <div class="col-md-4">
+                <div class="search_promo">
+                    <div class="input-group">
+
+                        <div class="input-group-btn btn_cat" style="left: 10px; position: absolute">
+                            <div class="input-group-btn btn_cat">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="background-color:#009688;border-color:#009688;">
+                                    <span style="color:white">Şehir Seç<span class="caret"></span></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right place_dd" role="menu">
+                                    @{
+                                        
+                                        var SehirListesi = ViewData["SehirListesi"];
+
+                                        foreach (var item in SehirListesi as IEnumerable<MapApp.Models.Sehir>)
+                                        {
+                                            <li><a href="@Url.Action("Index", "Home", new { lat = item.latitude, lng = item.longitude })" class="cinema">@item.name</a></li>
+                                        }
+                                    }
+
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <h1 style="color: white" class="text-center">MapApp</h1>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="map" class="map"></div>
+    <!--/map-->
+
+</body>
+
+
+
+
+
